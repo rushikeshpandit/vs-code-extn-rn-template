@@ -3,6 +3,13 @@
 	"displayName": "Redux Toolkit Saga Boilerplate",
 	"description": "",
 	"version": "0.0.1",
+	"icon": "./logo.png",
+	"publisher": "RushikeshPandit",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rushikeshpandit/vs-code-extn-rn-template.git"
+  },
+  "keywords": ["<Keyword 1>", "<Keyword 2>"],
 	"engines": {
 		"vscode": "^1.22.0"
 	},
@@ -28,7 +35,7 @@
 		"test": "node ./out/test/runTest.js"
 	},
 	"devDependencies": {
-		"@types/vscode": "^1.82.0",
+		"@types/vscode": "^1.22.0",
 		"@types/mocha": "^10.0.1",
 		"@types/node": "16.x",
 		"@typescript-eslint/eslint-plugin": "^6.4.1",
