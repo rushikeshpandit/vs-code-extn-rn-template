@@ -14,8 +14,8 @@
 	"contributes": {
 		"commands": [
 			{
-				"command": "redux-toolkit-saga-boilerplate.helloWorld",
-				"title": "Hello World"
+				"command": "redux-toolkit-saga-boilerplate.createToolkit",
+				"title": "Create Toolkit"
 			}
 		]
 	},

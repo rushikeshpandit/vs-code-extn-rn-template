@@ -2,6 +2,18 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
 
+async function getUserInfo() {
+	let userInputWindow = await vscode.window.showInputBox({
+		placeHolder: "The display name of your app ...",
+		prompt: "App Display Name",
+		validateInput: (val) => {
+			if (val.length === 0) {
+				return "Please enter a name for the app!";
+			}
+		},
+	});
+	return userInputWindow;
+}
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
@@ -10,28 +22,33 @@ export function activate(context: vscode.ExtensionContext) {
 	console.log(
 		'Congratulations, your extension "redux-toolkit-saga-boilerplate" is now active!'
 	);
-	let NEXT_TERM_ID = 1;
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
 	let disposable = vscode.commands.registerCommand(
-		"redux-toolkit-saga-boilerplate.helloWorld",
+		"redux-toolkit-saga-boilerplate.createToolkit",
 		async () => {
 			// The code you place here will be executed every time your command is executed
 			// Display a message box to the user
-			vscode.window.showInformationMessage(
-				"Hello World from Redux Toolkit Saga Boilerplate!"
-			);
-			const userResponse = await vscode.window.showInputBox({
-				placeHolder: "Type in your response",
-			});
-			console.log("🚀 ~ file: extension.ts:28 ~ userResponse:", userResponse);
-			const terminal = vscode.window.createTerminal(
-				`Ext Terminal #${NEXT_TERM_ID++}`
-			);
-			terminal.sendText(
-				`echo Sent text immediately after creating #${userResponse}`
-			);
+
+			await getUserInfo()
+				.then(function (result) {
+					const cmd =
+						"npx react-native init " +
+						result +
+						" --template https://github.com/rushikeshpandit/react-native-template.git";
+					const terminal = vscode.window.createTerminal("Ext Terminal");
+					terminal.show();
+					terminal.sendText(cmd);
+				})
+				.catch((error) => {
+					console.log(
+						"🚀 ~ file: extension.ts:41 ~ userResponse ~ error:",
+						error
+					);
+				});
+
+			// vscode.window.showInformationMessage(cmd);
 		}
 	);
 
