@@ -2,18 +2,6 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
 
-async function getUserInfo() {
-	let userInputWindow = await vscode.window.showInputBox({
-		placeHolder: "The display name of your app ...",
-		prompt: "App Display Name",
-		validateInput: (val) => {
-			if (val.length === 0) {
-				return "Please enter a name for the app!";
-			}
-		},
-	});
-	return userInputWindow;
-}
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
@@ -31,24 +19,27 @@ export function activate(context: vscode.ExtensionContext) {
 			// The code you place here will be executed every time your command is executed
 			// Display a message box to the user
 
-			await getUserInfo()
-				.then(function (result) {
-					const cmd =
-						"npx react-native init " +
-						result +
-						" --template https://github.com/rushikeshpandit/react-native-template.git";
-					const terminal = vscode.window.createTerminal("Ext Terminal");
-					terminal.show();
-					terminal.sendText(cmd);
-				})
-				.catch((error) => {
-					console.log(
-						"🚀 ~ file: extension.ts:41 ~ userResponse ~ error:",
-						error
-					);
-				});
+			let userInputWindow = await vscode.window.showInputBox({
+				placeHolder: "The display name of your app ...",
+				prompt: "App Display Name",
+				validateInput: (val) => {
+					if (!val) {
+						return "Project name should not be empty.";
+					} else {
+						return null;
+					}
+				},
+			});
 
-			// vscode.window.showInformationMessage(cmd);
+			if (userInputWindow !== undefined && userInputWindow !== "") {
+				const cmd =
+					"npx react-native init " +
+					userInputWindow +
+					" --template https://github.com/rushikeshpandit/react-native-template.git";
+				const terminal = vscode.window.createTerminal("Ext Terminal");
+				terminal.show();
+				terminal.sendText(cmd);
+			}
 		}
 	);
 
