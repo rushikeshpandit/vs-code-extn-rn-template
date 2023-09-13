@@ -2,14 +2,18 @@
 	"name": "redux-toolkit-saga-boilerplate",
 	"displayName": "Redux Toolkit Saga Boilerplate",
 	"description": "",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"icon": "./logo.png",
 	"publisher": "RushikeshPandit",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/rushikeshpandit/vs-code-extn-rn-template.git"
-  },
-  "keywords": ["<Keyword 1>", "<Keyword 2>"],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/rushikeshpandit/vs-code-extn-rn-template.git"
+	},
+	"keywords": [
+		"Redux Toolkit",
+		"Redux Toolkit Saga",
+		"Boilerplate"
+	],
 	"engines": {
 		"vscode": "^1.22.0"
 	},
