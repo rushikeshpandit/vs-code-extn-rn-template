@@ -4,18 +4,6 @@ exports.deactivate = exports.activate = void 0;
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require("vscode");
-async function getUserInfo() {
-    let userInputWindow = await vscode.window.showInputBox({
-        placeHolder: "The display name of your app ...",
-        prompt: "App Display Name",
-        validateInput: (val) => {
-            if (val.length === 0) {
-                return "Please enter a name for the app!";
-            }
-        },
-    });
-    return userInputWindow;
-}
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 function activate(context) {
@@ -28,19 +16,26 @@ function activate(context) {
     let disposable = vscode.commands.registerCommand("redux-toolkit-saga-boilerplate.createToolkit", async () => {
         // The code you place here will be executed every time your command is executed
         // Display a message box to the user
-        await getUserInfo()
-            .then(function (result) {
+        let userInputWindow = await vscode.window.showInputBox({
+            placeHolder: "The display name of your app ...",
+            prompt: "App Display Name",
+            validateInput: (val) => {
+                if (!val) {
+                    return "Project name should not be empty.";
+                }
+                else {
+                    return null;
+                }
+            },
+        });
+        if (userInputWindow !== undefined && userInputWindow !== "") {
             const cmd = "npx react-native init " +
-                result +
+                userInputWindow +
                 " --template https://github.com/rushikeshpandit/react-native-template.git";
             const terminal = vscode.window.createTerminal("Ext Terminal");
             terminal.show();
             terminal.sendText(cmd);
-        })
-            .catch((error) => {
-            console.log("🚀 ~ file: extension.ts:41 ~ userResponse ~ error:", error);
-        });
-        // vscode.window.showInformationMessage(cmd);
+        }
     });
     context.subscriptions.push(disposable);
 }
