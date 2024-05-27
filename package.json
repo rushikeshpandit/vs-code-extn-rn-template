@@ -2,7 +2,7 @@
 	"name": "redux-toolkit-saga-boilerplate",
 	"displayName": "Redux Toolkit Saga Boilerplate",
 	"description": "",
-	"version": "0.0.2",
+	"version": "1.0.1",
 	"icon": "./logo.png",
 	"publisher": "RushikeshPandit",
 	"repository": {
@@ -10,6 +10,7 @@
 		"url": "https://github.com/rushikeshpandit/vs-code-extn-rn-template.git"
 	},
 	"keywords": [
+		"React Native",
 		"Redux Toolkit",
 		"Redux Toolkit Saga",
 		"Boilerplate"
@@ -18,7 +19,7 @@
 		"vscode": "^1.22.0"
 	},
 	"categories": [
-		"Other"
+		"Programming Languages"
 	],
 	"activationEvents": [],
 	"main": "./out/extension.js",

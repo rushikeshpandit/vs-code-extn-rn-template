@@ -7,3 +7,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [Unreleased]
 
 - Initial release
+
+## [0.1.0] - 2024-05-27
+
+### Changes
+
+- Updated React Native version to 0.74.1
+- Removed unused dependencies
+- Performance improvement
+
