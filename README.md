@@ -20,6 +20,14 @@ Initial release
 
 ### 1.0.0
 
+
+### 1.0.1
+
+- Updated React Native version to 0.74.1
+- Removed unused dependencies
+- Performance improvement
+
+
 Initial release of redux-toolkit-saga-boilerplate
 
 Please share your feedback on rushikesh.d.pandit@gmail.com
